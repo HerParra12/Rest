@@ -1,10 +1,13 @@
 package co.edu.unbosque.rest.services;
 
+import co.edu.unbosque.rest.model.Art;
 import co.edu.unbosque.rest.model.UserApp;
 import co.edu.unbosque.rest.model.Wallet;
+import co.edu.unbosque.rest.services.;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class WalletService {
@@ -33,8 +36,8 @@ public class WalletService {
             if (Fcoins > 0) {
                 String query = "UPDATE wallethistory SET fcoins = '" + Fcoins + "' WHERE userapp = '" + email + "'";
                 stmt.execute(query);
-                //ArtService service= new ArtService();
-
+                ArtService service= new ArtService(conn);
+                List<Art> arts= service.listaobra();
 
    /*             String query1 = "UPDATE ownership SET userApp = '" + email +  "' WHERE art = '" + art + "'";
                 stmt.execute(query1);*/

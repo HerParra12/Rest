@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class obraService {
+public class ArtService {
     private Connection conn;
 
 //no se que hacer .... etto si leen esto es posible que falle y por mucho
 
-    public obraService(Connection conn) {
+    public ArtService(Connection conn) {
         this.conn = conn;
     }
     public Connection connect() throws SQLException {
