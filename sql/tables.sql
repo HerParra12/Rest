@@ -1,66 +1,42 @@
-CREATE TABLE userApp(
-                        name VARCHAR(30) NOT NULL,
-                        password VARCHAR(30) NOT NULL,
-                        email VARCHAR(40) NOT NULL,
-                        role VARCHAR(15),
-                        PRIMARY KEY(email)
+CREATE TABLE Person(
+                       name VARCHAR NOT NULL,
+                       email VARCHAR NOT NULL,
+                       password VARCHAR NOT NULL,
+                       role VARCHAR(10),
+                       PRIMARY KEY(name)
 );
 
-CREATE TABLE walletHistory(
-                              id SERIAL,
-                              userApp VARCHAR NOT NULL,
-                              type VARCHAR,
-                              fcoins FLOAT,
-                              registeredAt TIMESTAMP,
-                              PRIMARY KEY(id),
-                              FOREIGN KEY(userApp)
-                                  REFERENCES userApp(email)
+CREATE TABLE Shopper(
+                        name VARCHAR(20) NOT NULL,
+                        fcoins INT,
+                        id_shopper_parts INT,
+                        id_shopper_collections INT,
+                        PRIMARY KEY(name),
+                        FOREIGN KEY(name)
+                            REFERENCES Person(name)
+);
+
+CREATE TABLE Artist(
+                       name VARCHAR(20) NOT NULL,
+                       description VARCHAR(50) NOT NULL,
+                       id_part INT,
+                       id_collection INT,
+                       PRIMARY KEY(name),
+                       FOREIGN KEY(name)
+                           REFERENCES Person(name)
+);
+
+CREATE TABLE Part(
+                     title VARCHAR(40),
+                     description VARCHAR,
+                     price INT,
+                     id_part INT,
+                     PRIMARY KEY(title)
 );
 
 CREATE TABLE Collection(
-                           id SERIAL,
-                           name VARCHAR NOT NULL,
-                           userApp VARCHAR NOT NULl,
-                           description VARCHAR,
-                           category VARCHAR,
-                           PRIMARY KEY(id),
-                           FOREIGN KEY(userApp)
-                               REFERENCES userApp(email)
-);
-
-
-CREATE TABLE Art(
-                    id SERIAL,
-                    name VARCHAR,
-                    price FLOAT,
-                    imagePath VARCHAR,
-                    forSale BOOLEAN,
-                    collection INT,
-                    PRIMARY KEY(id),
-                    FOREIGN KEY(collection)
-                        REFERENCES Collection(id)
-);
-
-CREATE TABLE Ownership(
-                          id SERIAL,
-                          art INT,
-                          userApp VARCHAR,
-                          registeredAt TIMESTAMP,
-                          PRIMARY KEY(id),
-                          FOREIGN KEY(art)
-                              REFERENCES Art(id),
-                          FOREIGN KEY(userApp)
-                              REFERENCES userApp(email)
-);
-
-CREATE TABLE LikePart(
-                         id SERIAL,
-                         art INT,
-                         userApp VARCHAR,
-                         registeredAt TIMESTAMP,
-                         PRIMARY KEY(id),
-                         FOREIGN KEY(art)
-                             REFERENCES Art(id),
-                         FOREIGN KEY(userApp)
-                             REFERENCES userApp(email)
+                           title VARCHAR(50),
+                           description VARCHAR(50),
+                           parts INT,
+                           PRIMARY KEY(title)
 );

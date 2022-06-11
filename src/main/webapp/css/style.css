@@ -48,21 +48,11 @@ input{
     width: 50px;
     border: none;
     background: none;
-    color: #4a7950;
+    color: #919191;
     font-size: 30px;
     margin: 0 10px;
     pointer-events: none;
 }
-input2{
-    width: 50px;
-    border: none;
-    background: none;
-    color: #a51b0b;
-    font-size: 30px;
-    margin: 0 10px;
-    pointer-events: stroke;
-}
-
 button{
     color: #FFFFFF;
     background: none;

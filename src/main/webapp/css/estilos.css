@@ -277,6 +277,13 @@ nav ul li:hover ul{
     margin-bottom: 25px;
     text-align: center;
 }
+.subtitle3 {
+    margin: 2cm 0cm;
+    color: #ffffff;
+    font-size: 5rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
 
 .about__paragraph {
     line-height: 1.7;
