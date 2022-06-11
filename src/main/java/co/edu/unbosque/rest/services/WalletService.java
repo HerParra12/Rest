@@ -5,6 +5,7 @@ import co.edu.unbosque.rest.model.Wallet;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.Optional;
 
 public class WalletService {
     public WalletService() {
@@ -15,7 +16,7 @@ public class WalletService {
     static final String USER = "postgres";
     static final String PASSWORD = "admin";
 
-    public void sell(String username,String paswword,String fcoins){
+    public Optional<Boolean> sell(String username, String paswword, String fcoins, String nameart) {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
@@ -23,16 +24,25 @@ public class WalletService {
 
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             UserApp users = new UserService().login(username, paswword);
-            String email= users.getEmail();
-            String type = "recharge";
+            String email = users.getEmail();
+            float Fcoins = users.getFcoins() - Float.parseFloat(fcoins);
+            String type = "buy";
             Date date = new Date();
             long mili = date.getTime();
             Timestamp time = new Timestamp(mili);
+            if (Fcoins > 0) {
+                String query = "UPDATE wallethistory SET fcoins = '" + Fcoins + "' WHERE userapp = '" + email + "'";
+                stmt.execute(query);
+                //ArtService service= new ArtService();
 
-            //UPDATE wallet SET name = 'juan';
-            Wallet user1= new Wallet(email,type,Float.parseFloat(fcoins));
-            String query = "UPDATE wallethistory SET fcoins = '" + fcoins +  "' WHERE userapp = '" + email + "'";
-            stmt.execute(query);
+
+   /*             String query1 = "UPDATE ownership SET userApp = '" + email +  "' WHERE art = '" + art + "'";
+                stmt.execute(query1);*/
+
+            } else {
+                return Optional.of(false);
+            }
+
             stmt.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -46,7 +56,7 @@ public class WalletService {
                 se.printStackTrace();
             }
         }
+        return Optional.of(true);
+
     }
-
-
 }

@@ -6,24 +6,15 @@ public class UserApp {
     private String email;
     private String password;
     private String role;
-
+    private float fcoins;
     public UserApp(){}
 
-    public UserApp(String nombre, String correo, String clave, String accion){
-        name = nombre;
-        email = correo;
-        password = clave;
-        role = accion;
-    }
-
-    @Override
-    public String toString() {
-        return "UserApp{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public UserApp(String name, String email, String password, String role, float fcoins) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.fcoins = fcoins;
     }
 
     public String getName() {
@@ -56,5 +47,24 @@ public class UserApp {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public float getFcoins() {
+        return fcoins;
+    }
+
+    public void setFcoins(float fcoins) {
+        this.fcoins = fcoins;
+    }
+
+    @Override
+    public String toString() {
+        return "UserApp{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", fcoins=" + fcoins +
+                '}';
     }
 }

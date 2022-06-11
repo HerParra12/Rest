@@ -4,19 +4,28 @@ public class Art {
 
     private String title;
     private String price;
-    private String userApp;
+    private Boolean forsale;
     private String img;
-    private String collection;
+    private Integer collection;
+    private Integer id;
     private String owner;
 
     public Art(){}
 
-    public Art(String titulo, String precio, String email, String link, String coleccion){
+    public Art(String titulo, String precio, boolean email, String link, Integer coleccion){
         title = titulo;
+        forsale=email;
         price = precio;
-        userApp = email;
         img = link;
         collection = coleccion;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -35,13 +44,14 @@ public class Art {
         this.price = price;
     }
 
-    public String getUserApp() {
-        return userApp;
+    public Boolean getForsale() {
+        return forsale;
     }
 
-    public void setUserApp(String userApp) {
-        this.userApp = userApp;
+    public void setForsale(Boolean forsale) {
+        this.forsale = forsale;
     }
+
 
     public String getImg() {
         return img;
@@ -51,11 +61,11 @@ public class Art {
         this.img = img;
     }
 
-    public String getCollection() {
+    public Integer getCollection() {
         return collection;
     }
 
-    public void setCollection(String collection) {
+    public void setCollection(Integer collection) {
         this.collection = collection;
     }
 

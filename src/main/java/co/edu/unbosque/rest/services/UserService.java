@@ -14,7 +14,7 @@ public class UserService {
     public UserService(){}
 
     public UserApp addElement(String name, String email, String password, String role){
-        UserApp response = new UserApp(name, email, password, role);
+        UserApp response = new UserApp(name, email, password, role,0);
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); Statement statement = connection.createStatement()){
             Class.forName(JDBC_DRIVER);
             System.out.println("name = " + name + ", email = " + email + ", password = " + password + ", role = " + role);
@@ -40,7 +40,8 @@ public class UserService {
                 list.add(new UserApp(result.getString("name"),
                         result.getString("email"),
                         result.getString("password"),
-                        result.getString("role")));
+                        result.getString("role"),
+                        result.getFloat("focins")));
             }
             return list.stream()
                        .peek(x -> System.out.println(x))
