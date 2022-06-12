@@ -1,6 +1,7 @@
 package co.edu.unbosque.rest.services;
 
 import co.edu.unbosque.rest.model.Art;
+import co.edu.unbosque.rest.model.UserApp;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ public class ArtService {
         this.conn = conn;
     }
     public Connection connect() throws SQLException {
-        String url="jdbc:postgresql://localhost/Arte";
+        String url="jdbc:postgresql://localhost/laschisquistriquis";
         String user="postgres";
-        String password="jota73456";
+        String password="admin";
         return DriverManager.getConnection(url, user, password);
     }
 
@@ -195,4 +196,60 @@ public class ArtService {
             }
         }
     }
+
+    public Art  listaobra1(String name) throws SQLException {
+        Statement stmt = null;
+
+        List<Art> art = new ArrayList<Art>();
+
+        ResultSet rs = null;
+        try {
+            // Executing a SQL query
+            System.out.println("=> Listing obra...");
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM Art";
+            rs = stmt.executeQuery(sql);
+
+            // Reading data from result set row by row
+            while (rs.next()) {
+                // Extracting row values by column name
+                Integer colecctionid = rs.getInt("colecctionid");
+                Integer pieceid = rs.getInt("pieceid");
+                String imagen = rs.getString("imagen");
+                String titulo = rs.getString("titulo");
+                String precio = rs.getString("precio");
+                String owner = rs.getString("owner");
+
+
+                // Creating a new UserApp class instance and adding it to the array list
+                Art obra_n = new Art();
+                obra_n.setOwner(owner);
+                obra_n.setPrice(precio);
+                obra_n.setCollection(colecctionid);
+                obra_n.setImg(imagen);
+                obra_n.setTitle(titulo);
+                obra_n.setId(pieceid);
+                art.add(obra_n);
+
+            }
+            return art.stream()
+                    .peek(x -> System.out.println(x))
+                    .filter(x -> x.getTitle().equals(name))
+                    .findFirst()
+                    .orElse(new Art());
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } finally {
+            // Cleaning-up environment
+            try {
+                if (stmt != null) stmt.close();
+                rs.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+         return new Art();
+    }
+
 }

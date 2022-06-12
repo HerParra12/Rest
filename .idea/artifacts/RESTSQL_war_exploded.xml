@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="RESTSQL:war exploded">
-    <output-path>$PROJECT_DIR$/target/RESTSQL-2</output-path>
+    <output-path>$PROJECT_DIR$/target/Rest-2</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -40,7 +40,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/RESTSQL-2/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/Rest-2/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="RESTSQL/web/Web" />
     </root>
